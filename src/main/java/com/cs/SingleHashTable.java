@@ -1,5 +1,6 @@
 package com.cs;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class SingleHashTable {
 
     public void insert(int[] vector) {
         String hashValue = lshFunction.computeHash(vector);
-        hashTable.computeIfAbsent(hashValue, k -> new java.util.ArrayList<>()).add(vector);
+        hashTable.computeIfAbsent(hashValue, k -> new ArrayList<>()).add(vector);
     }
 
     public void insertAll(int[][] dataset) {

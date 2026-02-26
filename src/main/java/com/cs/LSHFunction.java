@@ -20,8 +20,8 @@ public class LSHFunction {
     /**
      * Implement Hash Function
      *
-     * @param vectorD the input vector of dimension D
-     * @return the hash value as a string
+     * @param vectorD the input vector in {0,1}^d
+     * @return vectorK the compressed input vector in {0,1}^k
      */
     public String computeHash(int[] vectorD) {
         // 1. Generate vector K from K dimension
