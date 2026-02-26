@@ -25,7 +25,8 @@ class MainTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-            "10, 2",
+            "1, 5",
+            "10, 5",
             "20, 2",
     })
     void testDatasetQ(int dimensionK, int L) {
