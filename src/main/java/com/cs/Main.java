@@ -30,7 +30,8 @@ public class Main {
     public void run(int independentRuns) {
         // 1. Data Generation
         int[][] dataset = datasetGenerator.dataGeneration();
-        log.info("Generated dataset with {} data points, with dimension {}", datasetGenerator.getDataPoint(), this.dimensionD);
+        log.info("Generated dataset with n = {}, with d = {}", datasetGenerator.getDataPoint(), this.dimensionD);
+        log.info("Experiment with k = {} and L = {}", this.dimensionK, independentRuns);
 
         // 2. Implement multiple hash table
         var hashTables = new ArrayList<SingleHashTable>();
