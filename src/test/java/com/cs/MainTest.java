@@ -7,15 +7,31 @@ class MainTest {
 
     private static final long RANDOM_SEED = 12345L;
 
-    @ParameterizedTest(name = "scenario {index}: {0} with n = {1} and d = {2}")
+    @ParameterizedTest
     @CsvSource(value = {
-            "Dataset X, 10000, 100",
-            "Dataset Q, 100, 100"
-    }, delimiter = ',')
-    void testDataSet(String scenarioName, int dataPointN, int dimensionD) {
+            "10, 50",
+            "50, 2",
+            "100, 1"
+    })
+    void testDataSetX(int dimensionK, int L) {
         // Given
-        var dimensionK = 10;
-        var L = 2;
+        var dataPointN = 10000;
+        var dimensionD = 100;
+
+        // When
+        var main = new Main(dataPointN, dimensionD, dimensionK, RANDOM_SEED);
+        main.run(L);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "10, 2",
+            "20, 2",
+    })
+    void testDatasetQ(int dimensionK, int L) {
+        // Given
+        var dataPointN = 100;
+        var dimensionD = 100;
 
         // When
         var main = new Main(dataPointN, dimensionD, dimensionK, RANDOM_SEED);
