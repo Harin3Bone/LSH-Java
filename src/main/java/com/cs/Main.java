@@ -1,11 +1,16 @@
 package com.cs;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
 public class Main {
+
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     private final DatasetGenerator datasetGenerator;
     private final int dimensionD;
@@ -25,7 +30,7 @@ public class Main {
     public void run(int independentRuns) {
         // 1. Data Generation
         int[][] dataset = datasetGenerator.dataGeneration();
-        System.out.println("Generated Dataset: " + Arrays.deepToString(dataset));
+        log.info("Generated dataset with {} data points, with dimension {}", datasetGenerator.getDataPoint(), this.dimensionD);
 
         // 2. Implement multiple hash table
         var hashTables = new ArrayList<SingleHashTable>();
@@ -39,17 +44,20 @@ public class Main {
             // 2.3. Add hash table to the list of hash tables
             hashTables.add(singleHashTable);
         }
+        log.info("Generated {} independent hash tables", independentRuns);
 
         // 3. Randomly select value from dataset
         var random = new Random(this.randomSeed);
         var queryKey = dataset[random.nextInt(datasetGenerator.getDataPoint())];
+        log.info("Random query vector: {}", Arrays.toString(queryKey));
 
         // 4. Query the hash tables and collect candidate vectors
         var candidateVectors = new HashSet<int[]>();
         for (var hashTable : hashTables) {
             candidateVectors.addAll(hashTable.query(queryKey));
         }
-        System.out.println("Candidate Vectors: " + candidateVectors);
+        log.info("Candidate Vectors size: {}", candidateVectors.size());
+        log.info("Candidate Vectors: {}", candidateVectors);
     }
 
 }

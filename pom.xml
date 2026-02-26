@@ -14,11 +14,25 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <slf4j.version>2.0.17</slf4j.version>
+        <logback.version>1.5.32</logback.version>
         <junit.jupiter.version>6.1.0-M1</junit.jupiter.version>
         <mockito.version>5.21.0</mockito.version>
     </properties>
 
     <dependencies>
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
         <!-- Unit Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
