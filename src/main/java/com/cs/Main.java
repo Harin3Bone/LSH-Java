@@ -14,7 +14,6 @@ public class Main {
 
     // Threshold for hamming space (c = 2, r = 10) - ANN
     private static final int THRESHOLD = 2 * 10;
-    private static final int FIXED_NUM_QUERIES = 10;
 
     private final DatasetGenerator datasetGenerator;
     private final int dataPointN;
@@ -57,8 +56,8 @@ public class Main {
 
         // 3. Begin query processing
         var random = new Random(this.randomSeed);
-        var queryKeys = new int[FIXED_NUM_QUERIES][this.dimensionD];
-        for (int i = 0; i < FIXED_NUM_QUERIES; i++) {
+        var queryKeys = new int[independentRunsL][this.dimensionD];
+        for (int i = 0; i < independentRunsL; i++) {
             queryKeys[i] = dataset[random.nextInt(this.dataPointN)];
         }
         log.info("Random query vector: {}", Arrays.toString(queryKeys));
@@ -104,7 +103,7 @@ public class Main {
             }
         }
 
-        return new EvaluateResult(totalIterations, successCount);
+        return new EvaluateResult(totalIterations, successCount, independentRunsL);
     }
 
     /**
@@ -125,13 +124,13 @@ public class Main {
     }
 
 
-    private record EvaluateResult(double totalIteration, double successCount) {
+    private record EvaluateResult(double totalIteration, double successCount, int independentRunsL) {
         double getAvgIteration() {
-            return totalIteration / FIXED_NUM_QUERIES;
+            return totalIteration / independentRunsL;
         }
 
         double getSuccessRate() {
-            return (successCount * 100.0) / FIXED_NUM_QUERIES;
+            return (successCount * 100.0) / independentRunsL;
         }
     }
 
