@@ -30,25 +30,9 @@ public class SingleHashTable {
         }
     }
 
-    public void remove(int[] vector) {
-        String hashValue = lshFunction.computeHash(vector);
-        List<int[]> chainBucket = hashTable.get(hashValue);
-        if (chainBucket != null) hashTable.remove(hashValue);
-    }
-
-    public void removeAll(int[][] dataset) {
-        for (int[] vectorD : dataset) {
-            this.remove(vectorD);
-        }
-    }
-
     public List<int[]> query(int[] vector) {
         String hashValue = lshFunction.computeHash(vector);
         return hashTable.getOrDefault(hashValue, Collections.emptyList());
-    }
-
-    public Map<String, List<int[]>> getHashTable() {
-        return this.hashTable;
     }
 
 }

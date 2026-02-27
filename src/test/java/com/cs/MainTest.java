@@ -13,14 +13,14 @@ class MainTest {
             "50, 2",
             "100, 1"
     })
-    void testDataSetX(int dimensionK, int L) {
+    void testDataSetX(int k, int L) {
         // Given
-        var dataPointN = 10000;
-        var dimensionD = 100;
+        var n = 10000;
+        var d = 100;
 
         // When
-        var main = new Main(dataPointN, dimensionD, dimensionK, RANDOM_SEED);
-        main.run(L);
+        var main = new Main(n, d, k, L, RANDOM_SEED);
+        main.run();
     }
 
     @ParameterizedTest
@@ -31,12 +31,12 @@ class MainTest {
     })
     void testDatasetQ(int dimensionK, int L) {
         // Given
-        var dataPointN = 100;
-        var dimensionD = 100;
+        var n = 100;
+        var d = 100;
 
         // When
-        var main = new Main(dataPointN, dimensionD, dimensionK, RANDOM_SEED);
-        main.run(L);
+        var main = new Main(n, d, dimensionK, L, RANDOM_SEED);
+        main.run();
     }
 
 }
